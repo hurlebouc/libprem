@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B45BD57715CD202100A6C484 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = B45BD57615CD202100A6C484 /* main.c */; };
-		B45BD57915CD202100A6C484 /* libprem.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B45BD57815CD202100A6C484 /* libprem.1 */; };
+		B475F6EC15CD2496009F23DB /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = B475F6EB15CD2496009F23DB /* main.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -18,7 +17,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				B45BD57915CD202100A6C484 /* libprem.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -26,8 +24,7 @@
 
 /* Begin PBXFileReference section */
 		B45BD57215CD202100A6C484 /* libprem */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libprem; sourceTree = BUILT_PRODUCTS_DIR; };
-		B45BD57615CD202100A6C484 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		B45BD57815CD202100A6C484 /* libprem.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = libprem.1; sourceTree = "<group>"; };
+		B475F6EB15CD2496009F23DB /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = src/main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +41,7 @@
 		B45BD56715CD202100A6C484 = {
 			isa = PBXGroup;
 			children = (
-				B45BD57515CD202100A6C484 /* libprem */,
+				B475F6EB15CD2496009F23DB /* main.c */,
 				B45BD57315CD202100A6C484 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,15 +52,6 @@
 				B45BD57215CD202100A6C484 /* libprem */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		B45BD57515CD202100A6C484 /* libprem */ = {
-			isa = PBXGroup;
-			children = (
-				B45BD57615CD202100A6C484 /* main.c */,
-				B45BD57815CD202100A6C484 /* libprem.1 */,
-			);
-			path = libprem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,7 +105,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B45BD57715CD202100A6C484 /* main.c in Sources */,
+				B475F6EC15CD2496009F23DB /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +194,7 @@
 				B45BD57E15CD202100A6C484 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
