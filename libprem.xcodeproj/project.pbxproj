@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B475F6EC15CD2496009F23DB /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = B475F6EB15CD2496009F23DB /* main.c */; };
+		B4AAE0E515CD26D9003C9556 /* bigint.c in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0E415CD26D9003C9556 /* bigint.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		B45BD57215CD202100A6C484 /* libprem */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libprem; sourceTree = BUILT_PRODUCTS_DIR; };
 		B475F6EB15CD2496009F23DB /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = src/main.c; sourceTree = "<group>"; };
+		B4AAE0E315CD26C5003C9556 /* bigint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bigint.h; path = src/bigint.h; sourceTree = "<group>"; };
+		B4AAE0E415CD26D9003C9556 /* bigint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bigint.c; path = src/bigint.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +44,8 @@
 		B45BD56715CD202100A6C484 = {
 			isa = PBXGroup;
 			children = (
+				B4AAE0E615CD26F0003C9556 /* headers */,
+				B4AAE0E715CD26FC003C9556 /* sources */,
 				B475F6EB15CD2496009F23DB /* main.c */,
 				B45BD57315CD202100A6C484 /* Products */,
 			);
@@ -52,6 +57,22 @@
 				B45BD57215CD202100A6C484 /* libprem */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B4AAE0E615CD26F0003C9556 /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				B4AAE0E315CD26C5003C9556 /* bigint.h */,
+			);
+			name = headers;
+			sourceTree = "<group>";
+		};
+		B4AAE0E715CD26FC003C9556 /* sources */ = {
+			isa = PBXGroup;
+			children = (
+				B4AAE0E415CD26D9003C9556 /* bigint.c */,
+			);
+			name = sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B475F6EC15CD2496009F23DB /* main.c in Sources */,
+				B4AAE0E515CD26D9003C9556 /* bigint.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
