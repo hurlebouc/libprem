@@ -1,0 +1,213 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B45BD57715CD202100A6C484 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = B45BD57615CD202100A6C484 /* main.c */; };
+		B45BD57915CD202100A6C484 /* libprem.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B45BD57815CD202100A6C484 /* libprem.1 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B45BD57015CD202100A6C484 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				B45BD57915CD202100A6C484 /* libprem.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B45BD57215CD202100A6C484 /* libprem */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libprem; sourceTree = BUILT_PRODUCTS_DIR; };
+		B45BD57615CD202100A6C484 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		B45BD57815CD202100A6C484 /* libprem.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = libprem.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B45BD56F15CD202100A6C484 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B45BD56715CD202100A6C484 = {
+			isa = PBXGroup;
+			children = (
+				B45BD57515CD202100A6C484 /* libprem */,
+				B45BD57315CD202100A6C484 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B45BD57315CD202100A6C484 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B45BD57215CD202100A6C484 /* libprem */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B45BD57515CD202100A6C484 /* libprem */ = {
+			isa = PBXGroup;
+			children = (
+				B45BD57615CD202100A6C484 /* main.c */,
+				B45BD57815CD202100A6C484 /* libprem.1 */,
+			);
+			path = libprem;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B45BD57115CD202100A6C484 /* libprem */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B45BD57C15CD202100A6C484 /* Build configuration list for PBXNativeTarget "libprem" */;
+			buildPhases = (
+				B45BD56E15CD202100A6C484 /* Sources */,
+				B45BD56F15CD202100A6C484 /* Frameworks */,
+				B45BD57015CD202100A6C484 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libprem;
+			productName = libprem;
+			productReference = B45BD57215CD202100A6C484 /* libprem */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B45BD56915CD202100A6C484 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = Hubert;
+			};
+			buildConfigurationList = B45BD56C15CD202100A6C484 /* Build configuration list for PBXProject "libprem" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B45BD56715CD202100A6C484;
+			productRefGroup = B45BD57315CD202100A6C484 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B45BD57115CD202100A6C484 /* libprem */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B45BD56E15CD202100A6C484 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B45BD57715CD202100A6C484 /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B45BD57A15CD202100A6C484 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B45BD57B15CD202100A6C484 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B45BD57D15CD202100A6C484 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B45BD57E15CD202100A6C484 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B45BD56C15CD202100A6C484 /* Build configuration list for PBXProject "libprem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B45BD57A15CD202100A6C484 /* Debug */,
+				B45BD57B15CD202100A6C484 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B45BD57C15CD202100A6C484 /* Build configuration list for PBXNativeTarget "libprem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B45BD57D15CD202100A6C484 /* Debug */,
+				B45BD57E15CD202100A6C484 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B45BD56915CD202100A6C484 /* Project object */;
+}
