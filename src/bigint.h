@@ -19,12 +19,14 @@ typedef struct{
 }bigint;
 
 bigint* newBigint(int size);
+void shrinkBigint(bigint*);
 void terminateBigint(bigint*);
 
 int equality(bigint*, bigint*);
 bigint* minimum(bigint*, bigint*);
 bigint* maximum(bigint*, bigint*);
 bigint* addition(bigint*, bigint*);
+bigint* soustraction(bigint*, bigint*);
 bigint* multiply(bigint*, bigint*);
 bigint* divide(bigint*, bigint*);
 bigint* modulo(bigint*, bigint*);

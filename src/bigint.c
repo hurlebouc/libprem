@@ -17,6 +17,10 @@ bigint* newBigint(int size){
     return res;
 }
 
+void shrinkBigint(bigint* number){
+    number->value = realloc(number->value, number->length);
+}
+
 void terminateBigint(bigint* n){
     free(n->value);
     free(n);
@@ -131,17 +135,16 @@ bigint* addition(bigint* a, bigint* b){
         res->value[i] = (char) n;
         retenue = n / 256;
     }
-//    if (retenue != 0) {
-//        res->value = realloc(res->value, res->length + 1);
-//        res->value[res->length] = retenue;
-//        res->length++;
-//    }
     if (retenue == 0) {
         res->length--;
     } else {
         res->value[res->length - 1] = retenue;
     }
     return res;
+}
+
+bigint* soustraction(bigint* a, bigint* b){
+    
 }
 
 bigint* mult_aux(bigint* a, uint8_t b, int offset){
@@ -155,11 +158,6 @@ bigint* mult_aux(bigint* a, uint8_t b, int offset){
         res->value[i + offset] = (uint8_t) n;
         retenue = n / 256;
     }
-//    if (retenue != 0) {
-//        res->value = realloc(res->value, res->length + 1);
-//        res->value[res->length] = retenue;
-//        res->length++;
-//    }
     if (retenue == 0) {
         res->length--;
     } else {
@@ -187,11 +185,17 @@ bigint* multiply(bigint* a, bigint* b){
     return res;
 }
 
-static int div_aux(bigint* number, int offset){
-    return number->value[number->length - 1]*256 + number->value[number->length - 2];
+static bigint* getHead(bigint* number, int size){
+    bigint* res = newBigint(size);
+    for (int i = 0; i<size; i++) {
+        res->value[i] = number->value[number->length - size + i];
+    }
+    return res;
 }
 
 bigint* divide(bigint* a, bigint* b){
+    uint8_t* tab = malloc(sizeof(uint8_t)*a->length);
+    int bookmark = 0;
     
 }
 
