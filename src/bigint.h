@@ -21,9 +21,9 @@ typedef struct{
 bigint* newBigint();
 void terminateBigint(bigint*);
 
-bigint* add(bigint*, bigint*);
-bigint* mul(bigint*, bigint*);
-bigint* div(bigint*, bigint*);
+bigint* addition(bigint*, bigint*);
+bigint* multiply(bigint*, bigint*);
+bigint* divide(bigint*, bigint*);
 bigint* power(bigint* n, bigint* p);
 
 #endif

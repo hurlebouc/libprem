@@ -7,7 +7,8 @@
 //
 
 #include <stdio.h>
+#include <math.h>
 
 int main(){
-    printf("caca\n");
+    printf("caca : %d\n",min(2,3));
 }
