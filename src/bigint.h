@@ -14,16 +14,20 @@
 //little-endian notation
 
 typedef struct{
-    int8_t*     value;
+    uint8_t*     value;
     int         length;
 }bigint;
 
-bigint* newBigint();
+bigint* newBigint(int size);
 void terminateBigint(bigint*);
 
 bigint* addition(bigint*, bigint*);
 bigint* multiply(bigint*, bigint*);
 bigint* divide(bigint*, bigint*);
 bigint* power(bigint* n, bigint* p);
+bigint* logarithm(bigint* n, bigint* base);
+
+uint64_t bigint_to_int(bigint* number);
+bigint* int_to_bigint(uint64_t n);
 
 #endif

@@ -10,14 +10,98 @@
 #include <stdlib.h>
 #include "bigint.h"
 
-bigint* newBigint(){
-    return malloc(sizeof(bigint));
+bigint* newBigint(int size){
+    bigint* res = malloc(sizeof(bigint));
+    res->value = malloc(sizeof(uint8_t)*size);
+    res->length = size;
+    return res;
 }
 
 void terminateBigint(bigint* n){
+    free(n->value);
     free(n);
 }
 
-bigint* addition(bigint* a, bigint* b){
-    int8_t retenu = 0;
+static int minint(int a, int b){
+    if (a<b) {
+        return a;
+    } else {
+        return b;
+    }
 }
+
+static int maxint(int a, int b){
+    if (a<b) {
+        return b;
+    } else {
+        return a;
+    }
+}
+
+static int log(uint64_t n, int base){
+    int res = 0;
+    while (n!= 0) {
+        res++;
+        n = n / base;
+    }
+    return res - 1;
+}
+
+uint64_t bigint_to_int(bigint* number){
+    uint64_t* res = (uint64_t*) number->value;
+    return *res;
+}
+
+bigint* int_to_bigint(uint64_t n){
+    int size = log(n, 256) + 1;
+    bigint* res = newBigint(size);
+    for (int i = 0; i<size; i++) {
+        res->value[i] = n % 256;
+        n = n / 256;
+    }
+    return res;
+}
+
+bigint* addition(bigint* a, bigint* b){
+    uint8_t retenu = 0;
+    int sa = a->length;
+    int sb = b->length;
+    int min = minint(sa, sb);
+    int max = maxint(sa, sb);
+    bigint* res = newBigint(max);
+    for (int i = 0; i<min; i++) {
+        uint8_t n1 = a->value[i];
+        uint8_t n2 = b->value[i];
+        printf("%d %d\n", n1, n2);
+        int n = n1 + n2 + retenu;
+        retenu = n / 256;
+        res->value[i] = (char) n;
+    }
+    bigint* bigger;
+    if (sa == max) {
+        bigger = a;
+    } else {
+        bigger = b;
+    }
+    for (int i = min; i<max; i++) {
+        int n = bigger->value[i] + retenu;
+        res->value[i] = (char) n;
+        retenu = n / 256;
+    }
+    return res;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
