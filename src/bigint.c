@@ -72,9 +72,10 @@ bigint* addition(bigint* a, bigint* b){
     for (int i = 0; i<min; i++) {
         uint8_t n1 = a->value[i];
         uint8_t n2 = b->value[i];
-        printf("%d %d\n", n1, n2);
         int n = n1 + n2 + retenu;
+        printf("%x %x ", n1, n2);
         retenu = n / 256;
+        printf("retenue : %x\n", retenu);
         res->value[i] = (char) n;
     }
     bigint* bigger;
@@ -87,6 +88,11 @@ bigint* addition(bigint* a, bigint* b){
         int n = bigger->value[i] + retenu;
         res->value[i] = (char) n;
         retenu = n / 256;
+    }
+    if (retenu != 0) {
+        res->value = realloc(res->value, res->length + 1);
+        res->value[res->length] = retenu;
+        res->length++;
     }
     return res;
 }

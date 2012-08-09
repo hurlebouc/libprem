@@ -11,9 +11,9 @@
 #include "bigint.h"
 
 int main(){
-    bigint* a = int_to_bigint(1000);
-    bigint* b = int_to_bigint(190000000);
-    bigint* c = addition(b, a);
+    bigint* a = int_to_bigint(2838729873);
+    bigint* b = int_to_bigint(2897398729);
+    bigint* c = addition(a, b);
     
     
     printf("caca : %llu\n",bigint_to_int(c));
