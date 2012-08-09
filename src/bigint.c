@@ -48,8 +48,13 @@ static int log(uint64_t n, int base){
 }
 
 uint64_t bigint_to_int(bigint* number){
-    uint64_t* res = (uint64_t*) number->value;
-    return *res;
+    uint64_t res = 0;
+    uint64_t p = 1;
+    for (int i = 0; i<number->length; i++) {
+        res += p * number->value[i];
+        p *= 256;
+    }
+    return res;
 }
 
 bigint* int_to_bigint(uint64_t n){
@@ -62,8 +67,47 @@ bigint* int_to_bigint(uint64_t n){
     return res;
 }
 
+int equality(bigint* a, bigint*b){
+    if (a->length != b->length) {
+        return 0;
+    }
+    for (int i = 0; i<a->length; i++) {
+        if (a->value[i] != b->value[i]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+bigint* maximum(bigint* a, bigint* b){
+    if (a->length > b->length) {
+        return a;
+    }
+    if (b->length > a->length) {
+        return b;
+    }
+    for (int i = a->length - 1; i>=0; i--) {
+        if (a->value[i] > b->value[i]) {
+            return a;
+        }
+        if (b->value[i] > a->value[i]) {
+            return b;
+        }
+    }
+    return a;
+}
+
+bigint* minimum(bigint* a, bigint* b){
+    bigint* max = maximum(a, b);
+    if (max == a) {
+        return b;
+    } else {
+        return a;
+    }
+}
+
 bigint* addition(bigint* a, bigint* b){
-    uint8_t retenu = 0;
+    uint8_t retenue = 0;
     int sa = a->length;
     int sb = b->length;
     int min = minint(sa, sb);
@@ -72,10 +116,8 @@ bigint* addition(bigint* a, bigint* b){
     for (int i = 0; i<min; i++) {
         uint8_t n1 = a->value[i];
         uint8_t n2 = b->value[i];
-        int n = n1 + n2 + retenu;
-        printf("%x %x ", n1, n2);
-        retenu = n / 256;
-        printf("retenue : %x\n", retenu);
+        int n = n1 + n2 + retenue;
+        retenue = n / 256;
         res->value[i] = (char) n;
     }
     bigint* bigger;
@@ -85,18 +127,55 @@ bigint* addition(bigint* a, bigint* b){
         bigger = b;
     }
     for (int i = min; i<max; i++) {
-        int n = bigger->value[i] + retenu;
+        int n = bigger->value[i] + retenue;
         res->value[i] = (char) n;
-        retenu = n / 256;
+        retenue = n / 256;
     }
-    if (retenu != 0) {
+    if (retenue != 0) {
         res->value = realloc(res->value, res->length + 1);
-        res->value[res->length] = retenu;
+        res->value[res->length] = retenue;
         res->length++;
     }
     return res;
 }
 
+bigint* mult_aux(bigint* a, uint8_t b, int offset){
+    bigint* res = newBigint(a->length + offset);
+    uint8_t retenue = 0;
+    for (int i = 0; i<offset; i++) {
+        res->value[i] = 0;
+    }
+    for (int i = 0; i<a->length; i++) {
+        int n = a->value[i] * b + retenue;
+        res->value[i + offset] = (uint8_t) n;
+        retenue = n / 256;
+    }
+    if (retenue != 0) {
+        res->value = realloc(res->value, res->length + 1);
+        res->value[res->length] = retenue;
+        res->length++;
+    }
+    return res;
+}
+
+bigint* multiply(bigint* a, bigint* b){
+    bigint* max = maximum(a, b);
+    bigint* min;
+    if (max == a) {
+        min = b;
+    } else {
+        min = a;
+    }
+    bigint* res = newBigint(0); // useless
+    for (int i = 0; i<min->length; i++) {
+        bigint* tmp = mult_aux(max, min->value[i], i);
+        bigint* former = res;
+        res = addition(res, tmp);
+        free(former);
+        free(tmp);
+    }
+    return res;
+}
 
 
 

@@ -11,10 +11,10 @@
 #include "bigint.h"
 
 int main(){
-    bigint* a = int_to_bigint(2838729873);
-    bigint* b = int_to_bigint(2897398729);
-    bigint* c = addition(a, b);
+    bigint* a = int_to_bigint(0xa9E6);
+    bigint* b = int_to_bigint(0x273);
+    bigint* c = multiply(a, b);
     
     
-    printf("caca : %llu\n",bigint_to_int(c));
+    printf("caca : %llx\n",bigint_to_int(c));
 }
