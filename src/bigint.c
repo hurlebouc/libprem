@@ -112,7 +112,7 @@ bigint* addition(bigint* a, bigint* b){
     int sb = b->length;
     int min = minint(sa, sb);
     int max = maxint(sa, sb);
-    bigint* res = newBigint(max);
+    bigint* res = newBigint(max + 1);
     for (int i = 0; i<min; i++) {
         uint8_t n1 = a->value[i];
         uint8_t n2 = b->value[i];
@@ -131,16 +131,21 @@ bigint* addition(bigint* a, bigint* b){
         res->value[i] = (char) n;
         retenue = n / 256;
     }
-    if (retenue != 0) {
-        res->value = realloc(res->value, res->length + 1);
-        res->value[res->length] = retenue;
-        res->length++;
+//    if (retenue != 0) {
+//        res->value = realloc(res->value, res->length + 1);
+//        res->value[res->length] = retenue;
+//        res->length++;
+//    }
+    if (retenue == 0) {
+        res->length--;
+    } else {
+        res->value[res->length - 1] = retenue;
     }
     return res;
 }
 
 bigint* mult_aux(bigint* a, uint8_t b, int offset){
-    bigint* res = newBigint(a->length + offset);
+    bigint* res = newBigint(a->length + offset + 1);
     uint8_t retenue = 0;
     for (int i = 0; i<offset; i++) {
         res->value[i] = 0;
@@ -150,10 +155,15 @@ bigint* mult_aux(bigint* a, uint8_t b, int offset){
         res->value[i + offset] = (uint8_t) n;
         retenue = n / 256;
     }
-    if (retenue != 0) {
-        res->value = realloc(res->value, res->length + 1);
-        res->value[res->length] = retenue;
-        res->length++;
+//    if (retenue != 0) {
+//        res->value = realloc(res->value, res->length + 1);
+//        res->value[res->length] = retenue;
+//        res->length++;
+//    }
+    if (retenue == 0) {
+        res->length--;
+    } else {
+        res->value[res->length - 1] = retenue;
     }
     return res;
 }
@@ -177,8 +187,13 @@ bigint* multiply(bigint* a, bigint* b){
     return res;
 }
 
+static int div_aux(bigint* number, int offset){
+    return number->value[number->length - 1]*256 + number->value[number->length - 2];
+}
 
-
+bigint* divide(bigint* a, bigint* b){
+    
+}
 
 
 

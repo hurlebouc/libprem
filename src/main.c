@@ -11,8 +11,8 @@
 #include "bigint.h"
 
 int main(){
-    bigint* a = int_to_bigint(0xa9E6);
-    bigint* b = int_to_bigint(0x273);
+    bigint* a = int_to_bigint(0x333896);
+    bigint* b = int_to_bigint(0x233773);
     bigint* c = multiply(a, b);
     
     

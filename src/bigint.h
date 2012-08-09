@@ -27,6 +27,7 @@ bigint* maximum(bigint*, bigint*);
 bigint* addition(bigint*, bigint*);
 bigint* multiply(bigint*, bigint*);
 bigint* divide(bigint*, bigint*);
+bigint* modulo(bigint*, bigint*);
 bigint* power(bigint* n, bigint* p);
 bigint* logarithm(bigint* n, bigint* base);
 
