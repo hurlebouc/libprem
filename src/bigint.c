@@ -143,8 +143,39 @@ bigint* addition(bigint* a, bigint* b){
     return res;
 }
 
-bigint* soustraction(bigint* a, bigint* b){
-    
+/**
+ * This function work only with a >= b
+ */
+
+bigint* subtraction(bigint* a, bigint* b){
+    bigint* res = newBigint(a->length);
+    int retenue = 0;
+    for (int i = 0; i<b->length; i++) {
+        int na = a->value[i];
+        int nb = b->value[i];
+        int n = na - (nb + retenue);
+        if (n < 0) {
+            retenue = 1;
+            n = n + 256;
+        } else {
+            retenue = 0;
+        }
+        res->value[i] = n;
+    }
+    int i = b->length;
+    while (retenue != 0) {
+        int n = a->value[i] - retenue;
+        if (n < 0) {
+            retenue = 1;
+            n = n + 256;
+        } else {
+            retenue = 0;
+        }
+        res->value[i] = n;
+        i++;
+    }
+    res->length = i;
+    return res;
 }
 
 bigint* mult_aux(bigint* a, uint8_t b, int offset){
