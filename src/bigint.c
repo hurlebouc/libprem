@@ -71,16 +71,22 @@ bigint* int_to_bigint(uint64_t n){
     return res;
 }
 
-int equality(bigint* a, bigint*b){
-    if (a->length != b->length) {
-        return 0;
+int compare(bigint* a, bigint*b){
+    if (a->length > b->length) {
+        return 1;
     }
-    for (int i = 0; i<a->length; i++) {
-        if (a->value[i] != b->value[i]) {
-            return 0;
+    if (a->length < b->length) {
+        return -1;
+    }
+    for (int i = a->length - 1; i>=0; i--) {
+        if (a->value[i] > b->value[i]) {
+            return 1;
+        }
+        if (a->value[i] < b->value[i]) {
+            return -1;
         }
     }
-    return 1;
+    return 0;
 }
 
 bigint* maximum(bigint* a, bigint* b){
@@ -227,6 +233,10 @@ static bigint* getHead(bigint* number, int size){
 bigint* divide(bigint* a, bigint* b){
     uint8_t* tab = malloc(sizeof(uint8_t)*a->length);
     int bookmark = 0;
+    bigint* head = getHead(a, b->length);
+    if (compare(head, b) < 0) {
+        head = getHead(a, b->length + 1);
+    }
     
 }
 

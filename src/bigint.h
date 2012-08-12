@@ -28,7 +28,7 @@ bigint* newBigint(int size);
    void shrinkBigint(bigint*);
    void terminateBigint(bigint*);
 
-    int equality(bigint*, bigint*);
+    int compare(bigint*, bigint*);
 bigint* minimum(bigint*, bigint*);
 bigint* maximum(bigint*, bigint*);
 bigint* addition(bigint*, bigint*);
