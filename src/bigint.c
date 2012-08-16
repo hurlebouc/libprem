@@ -10,6 +10,10 @@
 #include <stdlib.h>
 #include "bigint.h"
 
+static void sout(bigint* number){
+    printf("%llu\n", bigint_to_int(number));
+}
+
 bigint* newBigint(int size){
     bigint* res = malloc(sizeof(bigint));
     res->value = malloc(sizeof(uint8_t)*size);
@@ -185,9 +189,9 @@ bigint* subtraction(bigint* a, bigint* b){
         }
         res->value[i] = n;
     }
-    int i = b->length;
-    while (retenue != 0) {
-        int n = a->value[i] - retenue;
+    for (int i = b->length; i<a->length; i++) {
+        int na = a->value[i];
+        int n = na - retenue;
         if (n < 0) {
             retenue = 1;
             n = n + 256;
@@ -195,9 +199,16 @@ bigint* subtraction(bigint* a, bigint* b){
             retenue = 0;
         }
         res->value[i] = n;
-        i++;
     }
-    res->length = i;
+    int i = a->length - 1;
+    while (i>=0 && res->value[i] == 0) {
+        i--;
+    }
+    if (i == -1) {
+        res->length = 1;
+    } else {
+        res->length = i + 1;
+    }
     return res;
 }
 
@@ -247,18 +258,20 @@ static bigint* getHead(bigint* number, int size){
     return res;
 }
 
+/**
+ * maybe can be improved
+ */
 static uint8_t divide_weak(bigint* a, bigint*b){
-    bigint* prec = copyBigInt(b);
-    bigint* mult = addition(b, b);
+    bigint* mult = copyBigInt(b);
+    uint8_t q = 0;
     while (compare(a, mult) >= 0) {
-        terminateBigint(prec);
-        prec = mult;
-        mult = addition(mult, b);
+        bigint* tmp = addition(mult, b);
+        terminateBigint(mult);
+        mult = tmp;
+        q++;
     }
     terminateBigint(mult);
-    uint8_t res = bigint_to_int(prec);
-    terminateBigint(prec);
-    return res;
+    return q;
 }
 
 //static int divide_aux(bigint* a, bigint*b, uint8_t* tab, int position){
