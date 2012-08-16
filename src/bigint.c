@@ -26,6 +26,23 @@ void terminateBigint(bigint* n){
     free(n);
 }
 
+bigint* copyBigInt(bigint* number){
+    bigint* res = newBigint(number->length);
+    for (int i = 0; i<number->length; i++) {
+        res->value[i] = number->value[i];
+    }
+    return res;
+}
+
+bigint* shl(bigint* number){
+    bigint* res = newBigint(number->length + 1);
+    res->value[0] = 0;
+    for (int i = 0; i<number->length; i++) {
+        res->value[i + 1] = number->value[i];
+    }
+    return res;
+}
+
 static int minint(int a, int b){
     if (a<b) {
         return a;
@@ -230,14 +247,83 @@ static bigint* getHead(bigint* number, int size){
     return res;
 }
 
+static uint8_t divide_weak(bigint* a, bigint*b){
+    bigint* prec = copyBigInt(b);
+    bigint* mult = addition(b, b);
+    while (compare(a, mult) >= 0) {
+        terminateBigint(prec);
+        prec = mult;
+        mult = addition(mult, b);
+    }
+    terminateBigint(mult);
+    uint8_t res = bigint_to_int(prec);
+    terminateBigint(prec);
+    return res;
+}
+
+//static int divide_aux(bigint* a, bigint*b, uint8_t* tab, int position){
+//    if (compare(a, b) < 0) {
+//        return position;
+//    }
+//    bigint* head = getHead(a, b->length);
+//    int i = 1;
+//    while (compare(head, b) < 0) {
+//        terminateBigint(head);
+//        head = getHead(a, b->length + i);
+//        i++;
+//    }
+//    for (int j = 1; j<256; j++) {
+//        
+//    }
+//}
+
 bigint* divide(bigint* a, bigint* b){
     uint8_t* tab = malloc(sizeof(uint8_t)*a->length);
-    int bookmark = 0;
-    bigint* head = getHead(a, b->length);
-    if (compare(head, b) < 0) {
-        head = getHead(a, b->length + 1);
+    int offset = b->length;
+    bigint* head = getHead(a, offset);
+    do {
+        uint8_t div = divide_weak(head, b);
+        tab[offset - b->length] = div;
+        bigint* mult = multiplyWithInt(b, div);
+        bigint* tmp = subtraction(head, mult);
+        terminateBigint(mult);
+        terminateBigint(head);
+        head = tmp;
+        tmp = shl(head);
+        terminateBigint(head);
+        head = tmp;
+        tmp = additionWithInt(head, a->value[a->length - offset - 1]);
+        terminateBigint(head);
+        head = tmp;
+        offset++;
+    } while (offset < a->length);
+    uint8_t div = divide_weak(head, b);
+    tab[offset - b->length] = div;
+    bigint* res = newBigint(offset - b->length + 1);
+    for (int i = 0; i<= offset - b->length; i++) {
+        res->value[i] = tab[offset - b->length - i];
     }
-    
+    return res;
+}
+
+/**
+ * to improve!
+ */
+bigint* additionWithInt(bigint* number, uint8_t n){
+    bigint* tmp = int_to_bigint(n);
+    bigint* res = addition(number, tmp);
+    terminateBigint(tmp);
+    return res;
+}
+
+/**
+ * to improve!
+ */
+bigint* multiplyWithInt(bigint* number, uint8_t n){
+    bigint* tmp = int_to_bigint(n);
+    bigint* res = multiply(number, tmp);
+    terminateBigint(tmp);
+    return res;
 }
 
 

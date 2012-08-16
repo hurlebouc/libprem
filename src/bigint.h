@@ -13,12 +13,6 @@
 
 //little-endian notation
 
-enum sign {
-    neg     = -1,
-    pos     =  1,
-    unsign  =  0
-    };
-
 typedef struct{
     uint8_t*     value;
     int         length;
@@ -27,13 +21,19 @@ typedef struct{
 bigint* newBigint(int size);
    void shrinkBigint(bigint*);
    void terminateBigint(bigint*);
+bigint* copyBigInt(bigint*);
 
     int compare(bigint*, bigint*);
 bigint* minimum(bigint*, bigint*);
 bigint* maximum(bigint*, bigint*);
+bigint* increment(bigint*, bigint*);
+bigint* decrement(bigint*, bigint*);
+bigint* shl(bigint*);
 bigint* addition(bigint*, bigint*);
+bigint* additionWithInt(bigint*, uint8_t);
 bigint* subtraction(bigint*, bigint*);
 bigint* multiply(bigint*, bigint*);
+bigint* multiplyWithInt(bigint*, uint8_t);
 bigint* divide(bigint*, bigint*);
 bigint* modulo(bigint*, bigint*);
 bigint* power(bigint* n, bigint* p);
