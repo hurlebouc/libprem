@@ -204,11 +204,7 @@ bigint* subtraction(bigint* a, bigint* b){
     while (i>=0 && res->value[i] == 0) {
         i--;
     }
-    if (i == -1) {
-        res->length = 1;
-    } else {
-        res->length = i + 1;
-    }
+    res->length = i + 1;
     return res;
 }
 

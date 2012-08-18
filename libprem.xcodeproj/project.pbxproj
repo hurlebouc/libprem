@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B475F6EC15CD2496009F23DB /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = B475F6EB15CD2496009F23DB /* main.c */; };
-		B4AAE0E515CD26D9003C9556 /* bigint.c in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0E415CD26D9003C9556 /* bigint.c */; };
+		B44B19EE15DFCA560088A5C4 /* tests.c in Sources */ = {isa = PBXBuildFile; fileRef = B44B19EC15DFCA560088A5C4 /* tests.c */; };
+		B44B19F615DFD0C30088A5C4 /* libcunit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B44B19F515DFD0C30088A5C4 /* libcunit.a */; };
+		B44B19F815DFD37D0088A5C4 /* bigint.c in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0E415CD26D9003C9556 /* bigint.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B45BD57015CD202100A6C484 /* CopyFiles */ = {
+		B44B19D415DFC9450088A5C4 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -24,29 +25,42 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B45BD57215CD202100A6C484 /* libprem */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libprem; sourceTree = BUILT_PRODUCTS_DIR; };
-		B475F6EB15CD2496009F23DB /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = src/main.c; sourceTree = "<group>"; };
+		B44B19D615DFC9450088A5C4 /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
+		B44B19EB15DFCA560088A5C4 /* listTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = listTests.c; path = tests/listTests.c; sourceTree = "<group>"; };
+		B44B19EC15DFCA560088A5C4 /* tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tests.c; path = tests/tests.c; sourceTree = "<group>"; };
+		B44B19F515DFD0C30088A5C4 /* libcunit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcunit.a; path = lib/libcunit.a; sourceTree = "<group>"; };
 		B4AAE0E315CD26C5003C9556 /* bigint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bigint.h; path = src/bigint.h; sourceTree = "<group>"; };
 		B4AAE0E415CD26D9003C9556 /* bigint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bigint.c; path = src/bigint.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B45BD56F15CD202100A6C484 /* Frameworks */ = {
+		B44B19D315DFC9450088A5C4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B44B19F615DFD0C30088A5C4 /* libcunit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B44B19CA15DFC8280088A5C4 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				B44B19EB15DFCA560088A5C4 /* listTests.c */,
+				B44B19EC15DFCA560088A5C4 /* tests.c */,
+			);
+			name = tests;
+			sourceTree = "<group>";
+		};
 		B45BD56715CD202100A6C484 = {
 			isa = PBXGroup;
 			children = (
+				B44B19F515DFD0C30088A5C4 /* libcunit.a */,
 				B4AAE0E615CD26F0003C9556 /* headers */,
 				B4AAE0E715CD26FC003C9556 /* sources */,
-				B475F6EB15CD2496009F23DB /* main.c */,
+				B44B19CA15DFC8280088A5C4 /* tests */,
 				B45BD57315CD202100A6C484 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,7 +68,7 @@
 		B45BD57315CD202100A6C484 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B45BD57215CD202100A6C484 /* libprem */,
+				B44B19D615DFC9450088A5C4 /* tests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,21 +92,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B45BD57115CD202100A6C484 /* libprem */ = {
+		B44B19D515DFC9450088A5C4 /* tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B45BD57C15CD202100A6C484 /* Build configuration list for PBXNativeTarget "libprem" */;
+			buildConfigurationList = B44B19DD15DFC9450088A5C4 /* Build configuration list for PBXNativeTarget "tests" */;
 			buildPhases = (
-				B45BD56E15CD202100A6C484 /* Sources */,
-				B45BD56F15CD202100A6C484 /* Frameworks */,
-				B45BD57015CD202100A6C484 /* CopyFiles */,
+				B44B19D215DFC9450088A5C4 /* Sources */,
+				B44B19D315DFC9450088A5C4 /* Frameworks */,
+				B44B19D415DFC9450088A5C4 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = libprem;
-			productName = libprem;
-			productReference = B45BD57215CD202100A6C484 /* libprem */;
+			name = tests;
+			productName = tests;
+			productReference = B44B19D615DFC9450088A5C4 /* tests */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -116,24 +130,44 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B45BD57115CD202100A6C484 /* libprem */,
+				B44B19D515DFC9450088A5C4 /* tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B45BD56E15CD202100A6C484 /* Sources */ = {
+		B44B19D215DFC9450088A5C4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B475F6EC15CD2496009F23DB /* main.c in Sources */,
-				B4AAE0E515CD26D9003C9556 /* bigint.c in Sources */,
+				B44B19EE15DFCA560088A5C4 /* tests.c in Sources */,
+				B44B19F815DFD37D0088A5C4 /* bigint.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		B44B19DE15DFC9450088A5C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = /opt/local/include/;
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/lib\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B44B19DF15DFC9450088A5C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = /opt/local/include/;
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/lib\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		B45BD57A15CD202100A6C484 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -183,39 +217,22 @@
 			};
 			name = Release;
 		};
-		B45BD57D15CD202100A6C484 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		B45BD57E15CD202100A6C484 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B44B19DD15DFC9450088A5C4 /* Build configuration list for PBXNativeTarget "tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B44B19DE15DFC9450088A5C4 /* Debug */,
+				B44B19DF15DFC9450088A5C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		B45BD56C15CD202100A6C484 /* Build configuration list for PBXProject "libprem" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B45BD57A15CD202100A6C484 /* Debug */,
 				B45BD57B15CD202100A6C484 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B45BD57C15CD202100A6C484 /* Build configuration list for PBXNativeTarget "libprem" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B45BD57D15CD202100A6C484 /* Debug */,
-				B45BD57E15CD202100A6C484 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
