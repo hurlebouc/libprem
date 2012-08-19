@@ -174,7 +174,7 @@ bigint* addition(bigint* a, bigint* b){
  * This function work only with a >= b
  */
 
-bigint* subtraction(bigint* a, bigint* b){
+bigint* substraction(bigint* a, bigint* b){
     bigint* res = newBigint(a->length);
     int retenue = 0;
     for (int i = 0; i<b->length; i++) {
@@ -274,22 +274,6 @@ static uint8_t divide_weak(bigint* a, bigint*b){
     return q;
 }
 
-//static int divide_aux(bigint* a, bigint*b, uint8_t* tab, int position){
-//    if (compare(a, b) < 0) {
-//        return position;
-//    }
-//    bigint* head = getHead(a, b->length);
-//    int i = 1;
-//    while (compare(head, b) < 0) {
-//        terminateBigint(head);
-//        head = getHead(a, b->length + i);
-//        i++;
-//    }
-//    for (int j = 1; j<256; j++) {
-//        
-//    }
-//}
-
 bigint* divide(bigint* a, bigint* b){
     if (compare(a, b) < 0) {
         // to avoit error in getHead();
@@ -302,7 +286,7 @@ bigint* divide(bigint* a, bigint* b){
         uint8_t div = divide_weak(head, b);
         tab[offset - b->length] = div;
         bigint* mult = multiplyWithInt(b, div);
-        bigint* tmp = subtraction(head, mult);
+        bigint* tmp = substraction(head, mult);
         terminateBigint(mult);
         terminateBigint(head);
         head = tmp;
@@ -329,7 +313,7 @@ bigint* divide(bigint* a, bigint* b){
 }
 
 /**
- * to improve!
+ * maybe to improve!
  */
 bigint* additionWithInt(bigint* number, uint8_t n){
     bigint* tmp = int_to_bigint(n);
@@ -339,7 +323,7 @@ bigint* additionWithInt(bigint* number, uint8_t n){
 }
 
 /**
- * to improve!
+ * maybe to improve!
  */
 bigint* multiplyWithInt(bigint* number, uint8_t n){
     bigint* tmp = int_to_bigint(n);
@@ -348,6 +332,21 @@ bigint* multiplyWithInt(bigint* number, uint8_t n){
     return res;
 }
 
+bigint* increment(bigint* number){
+    bigint* tmp = int_to_bigint(1);
+    bigint* res = addition(number, tmp);
+    terminateBigint(tmp);
+    terminateBigint(number);
+    return res;
+}
+
+bigint* decrement(bigint* number){
+    bigint* tmp = int_to_bigint(1);
+    bigint* res = substraction(number, tmp);
+    terminateBigint(tmp);
+    terminateBigint(number);
+    return res;
+}
 
 
 

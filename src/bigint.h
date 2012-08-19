@@ -26,12 +26,22 @@ bigint* copyBigInt(bigint*);
     int compare(bigint*, bigint*);
 bigint* minimum(bigint*, bigint*);
 bigint* maximum(bigint*, bigint*);
-bigint* increment(bigint*, bigint*);
-bigint* decrement(bigint*, bigint*);
+
+/**
+ * add 1 to the parameter
+ * @return the new address of the newly incremented bigint
+ */
+bigint* increment(bigint*);
+
+/**
+ * substract 1 to the parameter
+ * @return the new address of the newly decremented bigint
+ */
+bigint* decrement(bigint*);
 bigint* shl(bigint*);
 bigint* addition(bigint*, bigint*);
 bigint* additionWithInt(bigint*, uint8_t);
-bigint* subtraction(bigint*, bigint*);
+bigint* substraction(bigint*, bigint*);
 bigint* multiply(bigint*, bigint*);
 bigint* multiplyWithInt(bigint*, uint8_t);
 bigint* divide(bigint*, bigint*);

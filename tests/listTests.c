@@ -120,7 +120,7 @@ void testAddition(void){
 void testSubstraction(void){
     CU_ASSERT_EQUAL(0, compare(
                                int_to_bigint(1),
-                               subtraction(
+                               substraction(
                                         int_to_bigint(1),
                                         newBigint(0)
                                         )
@@ -129,7 +129,7 @@ void testSubstraction(void){
     
     CU_ASSERT_EQUAL(0, compare(
                                int_to_bigint(1),
-                               subtraction(
+                               substraction(
                                            int_to_bigint(1),
                                            int_to_bigint(0)
                                            )
@@ -137,7 +137,7 @@ void testSubstraction(void){
                     );
     CU_ASSERT_EQUAL(0, compare(
                                int_to_bigint(0),
-                               subtraction(
+                               substraction(
                                            newBigint(0),
                                            newBigint(0)
                                            )
@@ -146,7 +146,7 @@ void testSubstraction(void){
     int n = rand();
     CU_ASSERT_EQUAL(0, compare(
                                int_to_bigint(0),
-                               subtraction(
+                               substraction(
                                            int_to_bigint(n),
                                            int_to_bigint(n)
                                            )
@@ -158,7 +158,7 @@ void testSubstraction(void){
         bigint* a = int_to_bigint(fmax(na, nb));
         bigint* b = int_to_bigint(fmin(na, nb));
         bigint* c = int_to_bigint(fmax(na, nb) - fmin(na, nb));
-        bigint* res = subtraction(a, b);
+        bigint* res = substraction(a, b);
         CU_ASSERT_EQUAL(0, compare(c, res));
         terminateBigint(res);
         terminateBigint(a);
