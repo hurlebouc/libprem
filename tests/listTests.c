@@ -108,7 +108,9 @@ void testAddition(void){
         bigint* a = int_to_bigint(na);
         bigint* b = int_to_bigint(nb);
         bigint* c = int_to_bigint(na + nb);
-        CU_ASSERT_EQUAL(0, compare(c, addition(a, b)));
+        bigint* res = addition(a, b);
+        CU_ASSERT_EQUAL(0, compare(c, res));
+        terminateBigint(res);
         terminateBigint(a);
         terminateBigint(b);
         terminateBigint(c);
@@ -156,7 +158,9 @@ void testSubstraction(void){
         bigint* a = int_to_bigint(fmax(na, nb));
         bigint* b = int_to_bigint(fmin(na, nb));
         bigint* c = int_to_bigint(fmax(na, nb) - fmin(na, nb));
-        CU_ASSERT_EQUAL(0, compare(c, subtraction(a, b)));
+        bigint* res = subtraction(a, b);
+        CU_ASSERT_EQUAL(0, compare(c, res));
+        terminateBigint(res);
         terminateBigint(a);
         terminateBigint(b);
         terminateBigint(c);
@@ -222,7 +226,9 @@ void testMultiplication(void){
         bigint* a = int_to_bigint(na);
         bigint* b = int_to_bigint(nb);
         bigint* c = int_to_bigint(na * nb);
-        CU_ASSERT_EQUAL(0, compare(c, multiply(a, b)));
+        bigint* res = multiply(a, b);
+        CU_ASSERT_EQUAL(0, compare(c, res));
+        terminateBigint(res);
         terminateBigint(a);
         terminateBigint(b);
         terminateBigint(c);
@@ -231,7 +237,7 @@ void testMultiplication(void){
 
 void testDivision(void){
     
-    for (int i = 0; i<1; i++) {
+    for (int i = 0; i<1000; i++) {
         uint64_t na = rand();
         uint64_t nb = rand();
         if (nb == 0) {
@@ -241,9 +247,12 @@ void testDivision(void){
         bigint* b = int_to_bigint(nb);
         bigint* c = int_to_bigint(na / nb);
         bigint* res = divide(a, b);
-        printf("%llu, %llu : ", na, nb);
-        printf("%llu\n", bigint_to_int(res));
-        CU_ASSERT_EQUAL(0, compare(c, res));
+        int cmp = compare(c, res);
+        if (cmp != 0) {
+            printf("%llu, %llu : ", na, nb);
+            printf("%llu\n", bigint_to_int(res));
+        }
+        CU_ASSERT_EQUAL(0, cmp);
         terminateBigint(res);
         terminateBigint(a);
         terminateBigint(b);

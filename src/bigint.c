@@ -247,6 +247,10 @@ bigint* multiply(bigint* a, bigint* b){
 }
 
 static bigint* getHead(bigint* number, int size){
+    if (size > number->length) {
+        printf("This number has not a head of size %d.\n", size);
+        exit(EXIT_FAILURE);
+    }
     bigint* res = newBigint(size);
     for (int i = 0; i<size; i++) {
         res->value[i] = number->value[number->length - size + i];
@@ -287,10 +291,14 @@ static uint8_t divide_weak(bigint* a, bigint*b){
 //}
 
 bigint* divide(bigint* a, bigint* b){
+    if (compare(a, b) < 0) {
+        // to avoit error in getHead();
+        return newBigint(0);
+    }
     uint8_t* tab = malloc(sizeof(uint8_t)*a->length);
     int offset = b->length;
     bigint* head = getHead(a, offset);
-    do {
+    while (offset < a->length) {
         uint8_t div = divide_weak(head, b);
         tab[offset - b->length] = div;
         bigint* mult = multiplyWithInt(b, div);
@@ -301,16 +309,21 @@ bigint* divide(bigint* a, bigint* b){
         tmp = shl(head);
         terminateBigint(head);
         head = tmp;
-        tmp = additionWithInt(head, a->value[a->length - offset - 1]);
+        tmp = additionWithInt(head, a->value[a->length - (offset + 1)]);
         terminateBigint(head);
         head = tmp;
         offset++;
-    } while (offset < a->length);
+    }
     uint8_t div = divide_weak(head, b);
     tab[offset - b->length] = div;
+    
     bigint* res = newBigint(offset - b->length + 1);
     for (int i = 0; i<= offset - b->length; i++) {
         res->value[i] = tab[offset - b->length - i];
+    }
+    free(tab);
+    if (res->value[res->length - 1] == 0) {
+        res->length--;
     }
     return res;
 }
