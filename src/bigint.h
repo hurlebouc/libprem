@@ -38,6 +38,7 @@ bigint* increment(bigint*);
  * @return the new address of the newly decremented bigint
  */
 bigint* decrement(bigint*);
+    int isZero(bigint*);
 bigint* shl(bigint*);
 bigint* addition(bigint*, bigint*);
 bigint* additionWithInt(bigint*, uint8_t);

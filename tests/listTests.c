@@ -260,6 +260,54 @@ void testDivision(void){
     }
 }
 
+void testPower(void){
+    
+    for (int i = 0; i<1000; i++) {
+        uint64_t na = rand() % (0x10000);
+        uint64_t nb = rand() % 4;
+        if (nb == 0) {
+            continue;
+        }
+        bigint* a = int_to_bigint(na);
+        bigint* b = int_to_bigint(nb);
+        bigint* c = int_to_bigint(pow(na, nb));
+        bigint* res = power(a, b);
+        int cmp = compare(c, res);
+        if (cmp != 0) {
+            printf("%llu, %llu : ", na, nb);
+            printf("%llu\n", bigint_to_int(res));
+        }
+        CU_ASSERT_EQUAL(0, cmp);
+        terminateBigint(res);
+        terminateBigint(a);
+        terminateBigint(b);
+        terminateBigint(c);
+    }
+    
+    for (int i = 0; i<1000; i++) {
+        uint64_t na = 2;
+        uint64_t nb = rand() % 64;
+        if (nb == 0) {
+            continue;
+        }
+        bigint* a = int_to_bigint(na);
+        bigint* b = int_to_bigint(nb);
+        bigint* c = int_to_bigint(pow(na, nb));
+        bigint* res = power(a, b);
+        int cmp = compare(c, res);
+        if (cmp != 0) {
+            printf("%llu, %llu : ", na, nb);
+            printf("%llu\n", bigint_to_int(res));
+        }
+        CU_ASSERT_EQUAL(0, cmp);
+        terminateBigint(res);
+        terminateBigint(a);
+        terminateBigint(b);
+        terminateBigint(c);
+    }
+    power(int_to_bigint(192834773), int_to_bigint(192774));
+}
+
 
 
 

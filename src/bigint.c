@@ -240,8 +240,8 @@ bigint* multiply(bigint* a, bigint* b){
         bigint* tmp = mult_aux(max, min->value[i], i);
         bigint* former = res;
         res = addition(res, tmp);
-        free(former);
-        free(tmp);
+        terminateBigint(former);
+        terminateBigint(tmp);
     }
     return res;
 }
@@ -347,6 +347,45 @@ bigint* decrement(bigint* number){
     terminateBigint(number);
     return res;
 }
+
+bigint* modulo(bigint* a, bigint* b){
+    bigint* quotient = divide(a, b);
+    bigint* mult = multiply(b, quotient);
+    bigint* res = substraction(a, mult);
+    terminateBigint(quotient);
+    terminateBigint(mult);
+    return res;
+}
+
+int isZero(bigint* number){
+    return number->length == 0 ||(number->length == 1 && number->value[0] == 0);
+}
+
+
+bigint* power(bigint* n, bigint* p){
+    if (isZero(p)) {
+        return int_to_bigint(1);
+    }
+    bigint* two = int_to_bigint(2);
+    bigint* pdiv2 = divide(p, two);
+    bigint* cmp = multiply(pdiv2, two);
+    terminateBigint(two);
+    bigint* tmp = power(n, pdiv2);
+    terminateBigint(pdiv2);
+    bigint* res = multiply(tmp, tmp);
+    terminateBigint(tmp);
+    if (compare(p, cmp) == 0) {
+        terminateBigint(cmp);
+        return res;
+    } else {
+        terminateBigint(cmp);
+        bigint* tmp = multiply(n, res);
+        terminateBigint(res);
+        return tmp;
+    }
+}
+
+
 
 
 

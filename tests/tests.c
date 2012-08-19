@@ -40,8 +40,9 @@ int main(int argc, char* argv [])
     }
     if ((NULL == CU_add_test(pSuite, "compare", testCmp))||
         (NULL == CU_add_test(pSuite, "addition", testAddition))||
-        (NULL == CU_add_test(pSuite, "addition", testMultiplication))||
-        (NULL == CU_add_test(pSuite, "addition", testDivision))||
+        (NULL == CU_add_test(pSuite, "multiplication", testMultiplication))||
+        (NULL == CU_add_test(pSuite, "division", testDivision))||
+        (NULL == CU_add_test(pSuite, "power", testPower))||
         (NULL == CU_add_test(pSuite, "substraction", testSubstraction)))
     {
         CU_cleanup_registry();
