@@ -2,8 +2,8 @@
 //  tests.c
 //  libprem
 //
-//  Created by Hubert on 18/08/12.
-//  Copyright (c) 2012 Hubert. All rights reserved.
+//  Created by hurlebouc on 18/08/12.
+//  Copyright (c) 2012 hurlebouc. All rights reserved.
 //
 
 #include <stdio.h>

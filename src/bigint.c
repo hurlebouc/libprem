@@ -2,13 +2,15 @@
 //  bigint.c
 //  libprem
 //
-//  Created by Hubert on 04/08/12.
-//  Copyright (c) 2012 Hubert. All rights reserved.
+//  Created by hurlebouc on 04/08/12.
+//  Copyright (c) 2012 hurlebouc. All rights reserved.
 //
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "bigint.h"
+
+unsigned long long COMPTEUR = 0;
 
 static void sout(bigint* number){
     printf("%llu\n", bigint_to_int(number));
@@ -147,7 +149,7 @@ bigint* addition(bigint* a, bigint* b){
     for (int i = 0; i<min; i++) {
         uint8_t n1 = a->value[i];
         uint8_t n2 = b->value[i];
-        int n = n1 + n2 + retenue;
+        uint16_t n = n1 + n2 + retenue;
         retenue = n / 256;
         res->value[i] = (char) n;
     }
@@ -158,7 +160,7 @@ bigint* addition(bigint* a, bigint* b){
         bigger = b;
     }
     for (int i = min; i<max; i++) {
-        int n = bigger->value[i] + retenue;
+        uint16_t n = bigger->value[i] + retenue;
         res->value[i] = (char) n;
         retenue = n / 256;
     }
@@ -259,7 +261,7 @@ static bigint* getHead(bigint* number, int size){
 }
 
 /**
- * maybe can be improved
+ * can be improved
  */
 static uint8_t divide_weak(bigint* a, bigint*b){
     bigint* mult = copyBigInt(b);
@@ -299,6 +301,7 @@ bigint* divide(bigint* a, bigint* b){
         offset++;
     }
     uint8_t div = divide_weak(head, b);
+    terminateBigint(head);
     tab[offset - b->length] = div;
     
     bigint* res = newBigint(offset - b->length + 1);
@@ -384,6 +387,25 @@ bigint* power(bigint* n, bigint* p){
         return tmp;
     }
 }
+
+
+// -------------------------- MODULO ----------------------------
+
+// Maybe to improve!
+bigint* additionModulo(bigint* a, bigint* b, bigint* mod){
+    bigint* tmp = addition(a, b);
+    if (compare(tmp, mod) < 0) {
+        return tmp;
+    }
+    bigint* res = modulo(tmp, mod);
+    terminateBigint(tmp);
+    return res;
+}
+
+bigint* substractionModulo(bigint* a, bigint* b, bigint* mod){
+    
+}
+
 
 
 

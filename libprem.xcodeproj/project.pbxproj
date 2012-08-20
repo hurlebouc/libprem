@@ -115,8 +115,9 @@
 		B45BD56915CD202100A6C484 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = kjkjhkjh;
 				LastUpgradeCheck = 0440;
-				ORGANIZATIONNAME = Hubert;
+				ORGANIZATIONNAME = hurlebouc;
 			};
 			buildConfigurationList = B45BD56C15CD202100A6C484 /* Build configuration list for PBXProject "libprem" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -227,6 +228,7 @@
 				B44B19DF15DFC9450088A5C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B45BD56C15CD202100A6C484 /* Build configuration list for PBXProject "libprem" */ = {
 			isa = XCConfigurationList;

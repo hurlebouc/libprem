@@ -2,8 +2,8 @@
 //  listTests.c
 //  libprem
 //
-//  Created by Hubert on 18/08/12.
-//  Copyright (c) 2012 Hubert. All rights reserved.
+//  Created by hurlebouc on 18/08/12.
+//  Copyright (c) 2012 hurlebouc. All rights reserved.
 //
 
 #include <stdio.h>
@@ -305,7 +305,6 @@ void testPower(void){
         terminateBigint(b);
         terminateBigint(c);
     }
-    power(int_to_bigint(192834773), int_to_bigint(192774));
 }
 
 
