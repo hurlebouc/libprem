@@ -403,7 +403,23 @@ bigint* additionModulo(bigint* a, bigint* b, bigint* mod){
 }
 
 bigint* substractionModulo(bigint* a, bigint* b, bigint* mod){
-    
+    bigint* reste;
+    int isStrictlyNeg;
+    if (compare(a, b) >= 0) {
+        reste = substraction(a, b);
+        isStrictlyNeg = 0;
+    } else {
+        reste = substraction(b, a);
+        isStrictlyNeg = 1;
+    }
+    bigint* res = modulo(reste, mod);
+    terminateBigint(reste);
+    if (!isStrictlyNeg) {
+        return res;
+    }
+    bigint* res2 = substraction(mod, res);
+    terminateBigint(res);
+    return res2;
 }
 
 
