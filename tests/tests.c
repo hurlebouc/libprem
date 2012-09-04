@@ -43,7 +43,8 @@ int main(int argc, char* argv [])
         (NULL == CU_add_test(pSuite, "multiplication", testMultiplication))||
         (NULL == CU_add_test(pSuite, "division", testDivision))||
         (NULL == CU_add_test(pSuite, "power", testPower))||
-        (NULL == CU_add_test(pSuite, "substraction", testSubstraction)))
+        (NULL == CU_add_test(pSuite, "substraction", testSubstraction))||
+        (NULL == CU_add_test(pSuite, "constantes", testConst)))
     {
         CU_cleanup_registry();
         return CU_get_error();

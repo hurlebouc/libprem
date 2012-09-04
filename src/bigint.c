@@ -12,6 +12,28 @@
 
 unsigned long long COMPTEUR = 0;
 
+static bigint* _zero = NULL;
+static bigint* _one = NULL;
+
+static bigint* _zeroref = NULL;
+static bigint* _oneref = NULL;
+
+bigint* BIG_ZERO(){
+    if (_zeroref == NULL) {
+        _zero = int_to_bigint(0);
+        _zeroref = int_to_bigint(0);
+    }
+    return _zero;
+}
+
+bigint* BIG_ONE(){
+    if (_oneref == NULL) {
+        _one = int_to_bigint(1);
+        _oneref = int_to_bigint(1);
+    }
+    return _one;
+}
+
 static void sout(bigint* number){
     printf("%llu\n", bigint_to_int(number));
 }
@@ -210,7 +232,7 @@ bigint* substraction(bigint* a, bigint* b){
     return res;
 }
 
-bigint* mult_aux(bigint* a, uint8_t b, int offset){
+static bigint* mult_aux(bigint* a, uint8_t b, int offset){
     bigint* res = newBigint(a->length + offset + 1);
     uint8_t retenue = 0;
     for (int i = 0; i<offset; i++) {
@@ -422,7 +444,35 @@ bigint* substractionModulo(bigint* a, bigint* b, bigint* mod){
     return res2;
 }
 
-
+bigint* multiplyModulo(bigint* a, bigint* b, bigint* mod){
+    bigint* max = maximum(a, b);
+    bigint* min;
+    if (max == a) {
+        min = b;
+    } else {
+        min = a;
+    }
+    bigint* res = newBigint(0); // useless
+    for (int i = 0; i<min->length; i++) {
+        bigint* former;
+        bigint* tmp = mult_aux(max, min->value[i], i);
+        if (tmp->length >= mod->length) {
+            former = tmp;
+            tmp = modulo(tmp, mod);
+            terminateBigint(former);
+        }
+        former = res;
+        res = addition(res, tmp);
+        terminateBigint(former);
+        if (res->length >= mod->length) {
+            former = res;
+            res = modulo(res, mod);
+            terminateBigint(former);
+        }
+        terminateBigint(tmp);
+    }
+    return res;
+}
 
 
 

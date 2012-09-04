@@ -19,6 +19,9 @@ typedef struct{
     int         length;
 }bigint;
 
+bigint* BIG_ZERO();
+bigint* BIG_ONE();
+
 bigint* newBigint(int size);
    void shrinkBigint(bigint*);
    void terminateBigint(bigint*);
@@ -55,6 +58,7 @@ bigint* logarithm(bigint* n, bigint* base);
 bigint* modulo(bigint*, bigint*);
 bigint* additionModulo(bigint*, bigint*, bigint* mod);
 bigint* substractionModulo(bigint*, bigint*, bigint* mod);
+bigint* multiplyModulo(bigint*, bigint*, bigint* mod);
 bigint* powerModulo(bigint* n, bigint* p, bigint* mod);
 
 uint64_t bigint_to_int(bigint* number);

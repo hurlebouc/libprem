@@ -305,6 +305,16 @@ void testPower(void){
         terminateBigint(b);
         terminateBigint(c);
     }
+    
+    //power(int_to_bigint(19000000), int_to_bigint(0x10000));
+}
+
+void testConst(void){
+    bigint* zero1 = BIG_ZERO();
+    bigint* zero2 = BIG_ZERO();
+    CU_ASSERT_EQUAL(zero1, zero2);
+    bigint* one = BIG_ONE();
+    CU_ASSERT_NOT_EQUAL(one, zero1);
 }
 
 
