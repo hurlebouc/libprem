@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 hurlebouc. All rights reserved.
 //
 
+// TODO think about implementing maximal sharing
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "bigint.h"
@@ -14,24 +16,27 @@ unsigned long long COMPTEUR = 0;
 
 static bigint* _zero = NULL;
 static bigint* _one = NULL;
-
-static bigint* _zeroref = NULL;
-static bigint* _oneref = NULL;
+static bigint* _two = NULL;
 
 bigint* BIG_ZERO(){
-    if (_zeroref == NULL) {
+    if (_zero == NULL) {
         _zero = int_to_bigint(0);
-        _zeroref = int_to_bigint(0);
     }
     return _zero;
 }
 
 bigint* BIG_ONE(){
-    if (_oneref == NULL) {
+    if (_one == NULL) {
         _one = int_to_bigint(1);
-        _oneref = int_to_bigint(1);
     }
     return _one;
+}
+
+bigint* BIG_TWO(){
+    if (_two == NULL) {
+        _two = int_to_bigint(2);
+    }
+    return _two;
 }
 
 static void sout(bigint* number){
@@ -391,11 +396,11 @@ bigint* power(bigint* n, bigint* p){
     if (isZero(p)) {
         return int_to_bigint(1);
     }
-    bigint* two = int_to_bigint(2);
-    bigint* pdiv2 = divide(p, two);
-    bigint* cmp = multiply(pdiv2, two);
-    terminateBigint(two);
+//    bigint* two = int_to_bigint(2);
+    bigint* pdiv2 = divide(p, BIG_TWO());
+//    terminateBigint(two);
     bigint* tmp = power(n, pdiv2);
+    bigint* cmp = multiply(pdiv2, BIG_TWO());
     terminateBigint(pdiv2);
     bigint* res = multiply(tmp, tmp);
     terminateBigint(tmp);
@@ -474,6 +479,28 @@ bigint* multiplyModulo(bigint* a, bigint* b, bigint* mod){
     return res;
 }
 
+bigint* powerModulo(bigint* n, bigint* p, bigint* mod){
+    if (isZero(p)) {
+        return int_to_bigint(1);
+    }
+    bigint* two = int_to_bigint(2);
+    bigint* pdiv2 = divide(p, two);
+    bigint* cmp = multiply(pdiv2, two);
+    terminateBigint(two);
+    bigint* tmp = power(n, pdiv2);
+    terminateBigint(pdiv2);
+    bigint* res = multiply(tmp, tmp);
+    terminateBigint(tmp);
+    if (compare(p, cmp) == 0) {
+        terminateBigint(cmp);
+        return res;
+    } else {
+        terminateBigint(cmp);
+        bigint* tmp = multiply(n, res);
+        terminateBigint(res);
+        return tmp;
+    }
+}
 
 
 

@@ -21,6 +21,7 @@ typedef struct{
 
 bigint* BIG_ZERO();
 bigint* BIG_ONE();
+bigint* BIG_TWO();
 
 bigint* newBigint(int size);
    void shrinkBigint(bigint*);
