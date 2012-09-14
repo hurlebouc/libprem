@@ -55,6 +55,9 @@ void shrinkBigint(bigint* number){
 }
 
 void terminateBigint(bigint* n){
+    if (n == BIG_ZERO() || n == BIG_ONE() || n == BIG_TWO()) {
+        return;
+    }
     free(n->value);
     free(n);
 }
@@ -363,17 +366,17 @@ bigint* multiplyWithInt(bigint* number, uint8_t n){
 }
 
 bigint* increment(bigint* number){
-    bigint* tmp = int_to_bigint(1);
-    bigint* res = addition(number, tmp);
-    terminateBigint(tmp);
+//    bigint* tmp = int_to_bigint(1);
+    bigint* res = addition(number, BIG_ONE());
+//    terminateBigint(tmp);
     terminateBigint(number);
     return res;
 }
 
 bigint* decrement(bigint* number){
-    bigint* tmp = int_to_bigint(1);
-    bigint* res = substraction(number, tmp);
-    terminateBigint(tmp);
+//    bigint* tmp = int_to_bigint(1);
+    bigint* res = substraction(number, BIG_ONE());
+//    terminateBigint(tmp);
     terminateBigint(number);
     return res;
 }
@@ -394,11 +397,10 @@ int isZero(bigint* number){
 
 bigint* power(bigint* n, bigint* p){
     if (isZero(p)) {
-        return int_to_bigint(1);
+//        return int_to_bigint(1);
+        return BIG_ONE();
     }
-//    bigint* two = int_to_bigint(2);
     bigint* pdiv2 = divide(p, BIG_TWO());
-//    terminateBigint(two);
     bigint* tmp = power(n, pdiv2);
     bigint* cmp = multiply(pdiv2, BIG_TWO());
     terminateBigint(pdiv2);
@@ -424,9 +426,13 @@ bigint* additionModulo(bigint* a, bigint* b, bigint* mod){
     if (compare(tmp, mod) < 0) {
         return tmp;
     }
-    bigint* res = modulo(tmp, mod);
-    terminateBigint(tmp);
-    return res;
+    if (tmp->length < mod->length) {
+        return tmp;
+    } else {
+        bigint* res = modulo(tmp, mod);
+        terminateBigint(tmp);
+        return res;
+    }
 }
 
 bigint* substractionModulo(bigint* a, bigint* b, bigint* mod){
@@ -467,36 +473,36 @@ bigint* multiplyModulo(bigint* a, bigint* b, bigint* mod){
             terminateBigint(former);
         }
         former = res;
-        res = addition(res, tmp);
+        res = additionModulo(res, tmp, mod);
         terminateBigint(former);
-        if (res->length >= mod->length) {
-            former = res;
-            res = modulo(res, mod);
-            terminateBigint(former);
-        }
         terminateBigint(tmp);
     }
     return res;
 }
 
+bigint* multiplyModulo2(bigint* a, bigint* b, bigint* mod){
+    bigint* tmp = multiply(a, b);
+    bigint* res = modulo(tmp, mod);
+    terminateBigint(tmp);
+    return res;
+}
+
 bigint* powerModulo(bigint* n, bigint* p, bigint* mod){
     if (isZero(p)) {
-        return int_to_bigint(1);
+        return BIG_ONE();
     }
-    bigint* two = int_to_bigint(2);
-    bigint* pdiv2 = divide(p, two);
-    bigint* cmp = multiply(pdiv2, two);
-    terminateBigint(two);
-    bigint* tmp = power(n, pdiv2);
+    bigint* pdiv2 = divide(p, BIG_TWO());
+    bigint* tmp = powerModulo(n, pdiv2, mod);
+    bigint* cmp = multiply(pdiv2, BIG_TWO());
     terminateBigint(pdiv2);
-    bigint* res = multiply(tmp, tmp);
+    bigint* res = multiplyModulo(tmp, tmp, mod);
     terminateBigint(tmp);
     if (compare(p, cmp) == 0) {
         terminateBigint(cmp);
         return res;
     } else {
         terminateBigint(cmp);
-        bigint* tmp = multiply(n, res);
+        bigint* tmp = multiplyModulo(n, res, mod);
         terminateBigint(res);
         return tmp;
     }

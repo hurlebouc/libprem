@@ -38,13 +38,17 @@ int main(int argc, char* argv [])
         CU_cleanup_registry();
         return CU_get_error();
     }
-    if ((NULL == CU_add_test(pSuite, "compare", testCmp))||
-        (NULL == CU_add_test(pSuite, "addition", testAddition))||
-        (NULL == CU_add_test(pSuite, "multiplication", testMultiplication))||
-        (NULL == CU_add_test(pSuite, "division", testDivision))||
-        (NULL == CU_add_test(pSuite, "power", testPower))||
-        (NULL == CU_add_test(pSuite, "substraction", testSubstraction))||
-        (NULL == CU_add_test(pSuite, "constantes", testConst)))
+    if ((NULL == CU_add_test(pSuite, "compare", testCmp))
+        || (NULL == CU_add_test(pSuite, "addition", testAddition))
+        || (NULL == CU_add_test(pSuite, "multiplication", testMultiplication))
+        || (NULL == CU_add_test(pSuite, "division", testDivision))
+        || (NULL == CU_add_test(pSuite, "power", testPower))
+        || (NULL == CU_add_test(pSuite, "substraction", testSubstraction))
+        || (NULL == CU_add_test(pSuite, "constantes", testConst))
+        || (NULL == CU_add_test(pSuite, "moduloAdd", testModuloAdd))
+        || (NULL == CU_add_test(pSuite, "moduloSub", testModuloSub))
+        || (NULL == CU_add_test(pSuite, "moduloMul", testModuloMult))
+        || (NULL == CU_add_test(pSuite, "moduloPow", testModuloPow)))
     {
         CU_cleanup_registry();
         return CU_get_error();
